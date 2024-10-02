@@ -1,0 +1,44 @@
+version: '3'
+
+services:
+  nestjs-template-db:
+    container_name: nestjs-template-db
+    image: postgres:15
+    restart: always
+    ports:
+      - 5432:5432
+    networks:
+      - base_network
+    volumes:
+      - ./data/pg:/data/postgres
+    env_file:
+      - .env
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+      PGDATA: /data/postgres
+
+  nestjs-template-api:
+    container_name: nestjs-template-api
+    image: node:lts
+    networks:
+      - base_network
+    ports:
+      - 3333:3333
+    command: sh -c "yarn start:dev"
+    depends_on:
+      - nestjs-template-db
+    working_dir: /app
+    volumes:
+      - .:/app
+    env_file: .env
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@nestjs-template-db:5432/${POSTGRES_DB}?schema=public
+
+networks:
+  base_network:
+
+
+volumes:
+  db-data:
