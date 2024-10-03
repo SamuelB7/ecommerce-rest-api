@@ -1,8 +1,8 @@
 version: '3'
 
 services:
-  nestjs-template-db:
-    container_name: nestjs-template-db
+  ecommerce-rest-db:
+    container_name: ecommerce-rest-db
     image: postgres:15
     restart: always
     ports:
@@ -19,8 +19,8 @@ services:
       POSTGRES_DB: ${POSTGRES_DB}
       PGDATA: /data/postgres
 
-  nestjs-template-api:
-    container_name: nestjs-template-api
+  ecommerce-rest-api:
+    container_name: ecommerce-rest-api
     image: node:lts
     networks:
       - base_network
@@ -28,13 +28,13 @@ services:
       - 3333:3333
     command: sh -c "yarn start:dev"
     depends_on:
-      - nestjs-template-db
+      - ecommerce-rest-db
     working_dir: /app
     volumes:
       - .:/app
     env_file: .env
     environment:
-      DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@nestjs-template-db:5432/${POSTGRES_DB}?schema=public
+      DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@ecommerce-rest-db:5432/${POSTGRES_DB}?schema=public
 
 networks:
   base_network:

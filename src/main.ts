@@ -11,9 +11,14 @@ async function bootstrap() {
   app.enableCors()
   app.useGlobalPipes(new ValidationPipe())
   const config = new DocumentBuilder()
-    .setTitle('Template API')
-    .setDescription('Template API to speed up development process')
+    .setTitle('Ecommerce API')
+    .setDescription('Rest API of the Ecommerce')
     .setVersion('1.0')
+    .addBearerAuth({
+      type: 'http',
+      scheme: 'bearer',
+      bearerFormat: 'JWT',
+    }, 'access-token')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('documentation', app, document);
