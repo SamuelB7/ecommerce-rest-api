@@ -1,4 +1,4 @@
-# NESTJS ECOOMERCE API
+# NESTJS E-COMMERCE API
 
 This is a REST API for an e-commerce system
 
