@@ -1,6 +1,6 @@
-# NESTJS TEMPLATE API
+# NESTJS ECOOMERCE API
 
-This is a REST API template made with NestJs, Prisma, JWT Authentication, Roles Guard and Vitest for testing
+This is a REST API for an e-commerce system
 
 ## Table of Contents
 
@@ -15,8 +15,8 @@ This is a REST API template made with NestJs, Prisma, JWT Authentication, Roles 
 
 1. Clone the repository:
     ```sh
-    git clone https://github.com/SamuelB7/nestjs-prisma-jwt-api-template.git
-    cd nestjs-prisma-jwt-api-template
+    git clone https://github.com/SamuelB7/ecommerce-rest-api.git
+    cd ecommerce-rest-api
     ```
 
 2. Copy the `.env.example` to `.env` and configure your environment variables:
@@ -38,7 +38,7 @@ This is a REST API template made with NestJs, Prisma, JWT Authentication, Roles 
 
 6. Run database migrations:
     ```sh
-    npm run prisma:migrate
+    npm run prisma:migrate:deploy
     ```
 
 ## Usage
