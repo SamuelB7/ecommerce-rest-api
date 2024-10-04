@@ -39,7 +39,6 @@ describe('UsersService unit tests', () => {
   });
 
   it('should create an user', async () => {
-    (prismaService.user.findUnique as ReturnType<typeof vi.fn>).mockResolvedValueOnce(null);
     const response = await usersService.create({ name: 'test', email: 'test@email.com', password: 'password' });
     expect(response).toHaveProperty('id');
     expect(response).toHaveProperty('name', 'test');
@@ -65,7 +64,7 @@ describe('UsersService unit tests', () => {
   });
 
   it('should update an user', async () => {
-    const mockUser = vi.fn().mockResolvedValueOnce({ id: 'random-id', name: 'test', email: 'test', role: UserRole.USER });
+    const mockUser = vi.fn().mockResolvedValueOnce({ id: 'random-id', name: 'test update', email: 'test', role: UserRole.USER });
     usersService.update = mockUser;
     const response = await usersService.update('random-id', { name: 'test update', email: 'test', role: UserRole.USER });
     expect(response).toHaveProperty('id');

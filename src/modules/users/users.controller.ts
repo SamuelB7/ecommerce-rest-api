@@ -3,7 +3,7 @@ import { UserRole } from '@/enums/user-role.enum';
 import { JwtGuard } from '@/guards/jwt.guard';
 import { RolesGuard } from '@/guards/roles.guard';
 import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, Query, UseGuards } from '@nestjs/common';
-import { ApiBearerAuth, ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiBody, ApiOperation, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UsersService } from './users.service';
@@ -27,6 +27,8 @@ export class UsersController {
 
   @ApiOperation({ summary: 'Get a paginated list of users' })
   @ApiResponse({ status: 200, description: 'List of users' })
+  @ApiParam({ name: 'page', required: true })
+  @ApiParam({ name: 'limit', required: true })
   @Get()
   findAll(@Query('page', ParseIntPipe) page: number, @Query('limit', ParseIntPipe) limit: number) {
     return this.usersService.findAll(page, limit);
