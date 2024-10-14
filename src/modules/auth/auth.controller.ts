@@ -1,5 +1,6 @@
 import { Body, Controller, Get, Post, Req, UseGuards } from '@nestjs/common';
 import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { User } from '@prisma/client';
 import { Request } from 'express';
 import { JwtGuard } from 'src/guards/jwt.guard';
 import { AuthService } from './auth.service';
@@ -32,7 +33,7 @@ export class AuthController {
   @UseGuards(JwtGuard)
   @Get('profile')
   async profile(@Req() request: Request) {
-    console.log(request.user)
-    return request.user
+    const user: Partial<User> = request.user
+    return user;
   }
 }
