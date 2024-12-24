@@ -33,6 +33,16 @@ export class CreateProductDto {
     price: number
 
     @ApiProperty({
+        example: 'Product category',
+        description: 'The category of the product',
+        required: true,
+        type: String
+    })
+    @IsString()
+    @IsNotEmpty()
+    category: string
+
+    @ApiProperty({
         example: ['path-to-image/image1.jpg', 'path-to-image/image2.jpg'],
         description: 'The array of images of the product',
         required: false,

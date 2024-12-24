@@ -17,7 +17,8 @@ export class ProductsService {
       data: {
         name: createProductDto.name,
         description: createProductDto.description,
-        price: createProductDto.price
+        price: createProductDto.price,
+        category: createProductDto.category
       },
       include: {
         images: true

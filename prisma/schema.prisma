@@ -60,6 +60,7 @@ model Product {
   name         String
   description  String
   price        Float
+  category     String         @db.VarChar(255)
   images       ProductImage[]
   Rating       Rating[]
   ProductOrder ProductOrder[]
